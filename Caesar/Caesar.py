@@ -21,8 +21,9 @@ def text_caesar(text: str, shift: int) -> str:
 def decrypt_text_caesar(text: str, shift: int) -> str:
     return text_caesar(text, -shift)
 
-print(text_caesar('яривет!', 2))
-print(decrypt_text_caesar('бткдзф!', 2))
+
+if __name__ == '__main__':
+    print(text_caesar('Привет, это зашифрованное сообщение!', 2))
 
 
 

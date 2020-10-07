@@ -7,18 +7,23 @@ def decrypt(sequence: bytes, shift: int) -> bytes:
     return encrypt(sequence, -shift)
 
 
-def encrypt_file(filename, shift):
+def encrypt_file(filename, shift, save_path=None):
     with open(filename, 'rb') as f:
         seq = f.read()
 
     seq = encrypt(seq, shift)
 
-    with open(filename, 'wb') as f:
-        f.write(seq)
+    if save_path is None:
+        with open(filename, 'wb') as f:
+            f.write(seq)
+    else:
+        with open(save_path, 'wb') as f:
+            f.write(seq)
 
 
-def decrypt_file(filename, shift):
-    encrypt_file(filename, -shift)
+def decrypt_file(filename, shift, save_path=None):
+    encrypt_file(filename, -shift, save_path)
 
 
-decrypt_file('2.txt', 100)
+if __name__ == '__main__':
+    encrypt_file('3.txt', 3)
