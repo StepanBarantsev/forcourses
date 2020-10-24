@@ -1,8 +1,9 @@
+# -*- coding: utf-8 -*-
 from random import shuffle
 
 
 def generate_notepad() -> dict:
-    alphabet = 'йцукенгшщзхъфывапролджэячсмитьбю' + 'йцукенгшщзхъфывапролджэячсмитьбю'.upper()
+    alphabet = 'йцукенгшщзхъфывапролджэячсмитьбю'
     alphabet_cpy = shuffle_string(alphabet)
 
     return {c1: c2 for c1, c2 in zip(alphabet, alphabet_cpy)}
@@ -15,6 +16,8 @@ def shuffle_string(txt: str) -> str:
 
 
 def encrypt(text: str, notepad: dict = None) -> str:
+    text = text.lower()
+
     if notepad is None:
         notepad = generate_notepad()
         print("Notepad is:", notepad, sep='\n')
@@ -25,3 +28,7 @@ def encrypt(text: str, notepad: dict = None) -> str:
 def decrypt(text: str, notepad: dict) -> str:
     notepad_reversed = {v: k for k, v in notepad.items()}
     return encrypt(text, notepad_reversed)
+
+
+if __name__ == '__main__':
+    print(encrypt(''''''))
