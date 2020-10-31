@@ -31,4 +31,4 @@ def decrypt(text: str, notepad: dict) -> str:
 
 
 if __name__ == '__main__':
-    print(encrypt(''''''))
+    print('hi')

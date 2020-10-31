@@ -3,26 +3,30 @@ from notepad.break_notepad.generate_frequency_dict import generate_list_for_freq
 from notepad.main import encrypt
 
 
-def break_notepad(txt) -> str:
+def break_notepad(text: str, d: dict = {}) -> str:
     lst = generate_list_for_frequency_analyse()
-    lst_from_txt = generate_list_for_frequency_analyse(generate_frequency_dict(txt))
+    lst_from_txt = generate_list_for_frequency_analyse(generate_frequency_dict(text))
 
     notepad = generate_notepad_from_two_lists(lst, lst_from_txt)
+    notepad = modificate_dict(notepad, d)
 
-    return encrypt(txt, notepad)
+    return encrypt(text, notepad)
 
 
-def generate_notepad_from_two_lists(lst1, lst2) -> dict:
-    d = {}
+def generate_notepad_from_two_lists(lst1: list, lst2: list) -> dict:
+    return {k: v for v, k in zip(lst1, lst2)}
 
-    print(lst1)
-    print(lst2)
 
-    for k, v in zip(lst1, lst2):
-        d[v] = k
+def modificate_dict(notepad: dict, d: dict):
 
-    print(d)
+    for key, value in d.items():
+        notepad_reversed = {v: k for k, v in notepad.items()}
+        orignal_letter = notepad_reversed[value]
+        notepad[orignal_letter] = notepad[key]
+        notepad[key] = value
 
-    return d
+    print(notepad)
 
-print(break_notepad(''''''))
+    return notepad
+
+

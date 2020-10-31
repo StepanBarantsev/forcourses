@@ -29,7 +29,6 @@ def generate_frequency_dict(txt: str = None) -> dict:
 
 
 def generate_list_for_frequency_analyse(d: dict = None):
-
     if d is None:
         with open('freq.json', encoding='UTF-8') as file:
             d = json.load(file)
@@ -37,4 +36,5 @@ def generate_list_for_frequency_analyse(d: dict = None):
     return [element[0] for element in sorted(d.items(), key=lambda x: x[1], reverse=True)]
 
 
-print(generate_list_for_frequency_analyse())
+if __name__ == '__main__':
+    generate_frequency_dict_and_write_to_file()
